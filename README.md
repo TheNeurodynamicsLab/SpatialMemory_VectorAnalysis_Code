@@ -3,6 +3,7 @@ Vector based analysis of spatial memory in a navigation task. Instructions along
 
 
 Please follow the instructions from the txt files in the following sequence:
+
 01.Details_ResTime.txt    // Instructions for generating the Restime Heat Map
 
 02.Details_OC.txt         // Instructions for generating the Occupancy Center
