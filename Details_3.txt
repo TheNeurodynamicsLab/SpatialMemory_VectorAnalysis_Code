@@ -1,0 +1,59 @@
+Instructions to generate the convergence peaks heat map given xImg,yImg and ResTime stack for a group of mice:
+
+Example input files are prvodied in the folder '01.inputFiles'.
+xImg and yImg <- From step 12 in 'Details_2.txt'
+ResTime <- From 'Details_RTHM.txt'
+
+Example output files at each step are provdied in the folder '02.outputFiles'.
+
+The following steps are to be carried out in ImageJ GUI.
+
+1. First, divide xImg and yImg stacks by ResTime stack each. Ensure that the slice order is the same in xImg/yImg and ResTime stacks when carrying out this step.
+"Process > Image Calculator". Process all slices.
+Output file - 01a and 01b.
+
+2. Convert stacks to 8-bit. 01a and 01b stacks converted to 8-bit.
+"Image > Type > 8-bit"
+Output file - 02a and 02b.
+
+3. 03a:
+Use ResTime stack and Z project to obtain sum slice. Converted to 8-bit. Thresholded between 1-255 to obtain ROI of pixels sampled by the mice.
+"Image > Stack > Z-Project". "Sum Slices".
+"Image > Type > 8-bit"
+"Image > Adjust > Threshold" 
+
+4. 03b:
+ROI of pixels sampled by the mice.
+
+5. 04a and 04b:
+02a and 02b stacks Z project to obtain sum slice.
+"Image > Stack > Z-Project". "Sum Slices".
+
+6. 05a and 05b:
+04a and 04b are subjected to surface fit of order 5 using ROI 03b.
+"Plugin > Polynomial surface fit". "X order = 5, Y order = 5".
+
+7. 06a and 06b:
+Generate differentials of the image.
+05a is differentiated with respect to X.
+05b is differentiated with respect to Y.
+"Plugin > Differentials". "With X" or "With Y".
+
+8. 07a and 07b:
+Using ROI manager, place ROI 03b on the origin 0,0 top left corner of the image. Clear outside ROI (set to zero).
+
+9. 08a:
+Add 07a and 07b to get divergence image.
+"Process > Image Calculator." Use "add" operation.
+
+10. 08b:
+Surface fit 08a with order 4.
+"Plugin > Polynomial surface fit". "X order = 4, Y order = 4".
+
+11. 09:
+Threshold and select values from -infinity to 0 to get negative divergence image and invert image for representation purpose. 
+"Image > Adjust > Threshold". Click apply to set unselected pixels as NaNs. (This step selected out all negative divergence values in the image.)
+"Process > Math > Multiply". Enter value "-1". (This step inverts the image values for representation purpose.)
+
+12. 10:
+Divergence images, e.g. 08b and 09, are placed into the original dimensions of 240 by 240 using information of bounding rectangle from ROI 03b.

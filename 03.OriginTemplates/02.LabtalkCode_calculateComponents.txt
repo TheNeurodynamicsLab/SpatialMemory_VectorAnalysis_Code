@@ -1,0 +1,68 @@
+//original
+
+doc -e W {
+doc -e LW {
+col(1)[L]$ = Xcoord;
+col(2)[L]$ = Ycoord;
+wks.addCol();
+col(3)[L]$ = delX;
+wks.addCol();
+col(4)[L]$ = delY;
+wks.addCol();
+col(5)[L]$ = deldelX;
+wks.addCol();
+col(6)[L]$ = deldelY;
+wks.addCol();
+col(7)[L]$ = Xp-Xt;
+wks.addCol();
+col(8)[L]$ = Yp-Yt;
+wks.addCol();
+col(9)[L]$ = R-Dist;
+wks.addCol();
+col(10)[L]$ =Theta-Dist;
+wks.addCol();
+col(11)[L]$ = R-VelVec i.e. magnitude of VelocityVectors;
+wks.addCol();
+col(12)[L]$ = Theta-VelVec i.e. angle of VelocityVectors;
+wks.addCol();
+col(13)[L]$ = cos-VelVec;
+wks.addCol();
+col(14)[L]$ = sin-VelVec;
+wks.addCol();
+col(15)[L]$ = Xcos-VelVec;
+wks.addCol();
+col(16)[L]$ = Ycos-VelVec;
+wks.addCol();
+col(17)[L]$ = Xsin-VelVec;
+wks.addCol();
+col(18)[L]$ = Ysin-VelVec;
+
+csetvalue col:=col(3) formula:="Col(1)[i+1]-Col(1)[i]" recalculate:=0;
+csetvalue col:=col(4) formula:="Col(2)[i+1]-Col(2)[i]" recalculate:=0;
+csetvalue col:=col(5) formula:="Col(3)[i+1]-Col(3)[i]" recalculate:=0;
+csetvalue col:=col(6) formula:="Col(4)[i+1]-Col(4)[i]" recalculate:=0;
+
+//delete last row
+range bb = col(A);
+int lastRow = bb.nRows;
+wks.deleteRows(lastRow)
+};
+};
+
+//PD7 WTM
+win -a Book9;
+doc -e LW {
+csetvalue col:=col(7) formula:="133.133 - Col(1)" recalculate:=0; //occupancy centre x coord = 133.133
+csetvalue col:=col(8) formula:="152.207 - Col(2)" recalculate:=0; //occupancy centre y coord = 152.207
+csetvalue col:=col(9) formula:="sqrt(Col(7)^2+Col(8)^2)" recalculate:=0;
+csetvalue col:=col(10) formula:="atan(Col(8)/Col(7))" recalculate:=0;
+csetvalue col:=col(11) formula:="sqrt(Col(3)^2+Col(4)^2)" recalculate:=0;
+csetvalue col:=col(12) formula:="acos(((Col(3)*Col(7))+(Col(4)*Col(8)))/(col(11)*col(9)))" recalculate:=0;
+csetvalue col:=col(13) formula:="((col(7)*col(3)) + (col(8)*col(4)))/col(9)" recalculate:=0;
+csetvalue col:=col(14) formula:="((col(8)*col(3)) - (col(7)*col(4)))/col(9)" recalculate:=0;
+csetvalue col:=col(15) formula:="col(13)*cos(col(10))" recalculate:=0;
+csetvalue col:=col(16) formula:="col(13)*sin(col(10))" recalculate:=0;
+csetvalue col:=col(17) formula:="col(14)*cos(col(10))" recalculate:=0;
+csetvalue col:=col(18) formula:="col(14)*sin(col(10))" recalculate:=0;
+};
+win -hc 1 Book9;

@@ -1,0 +1,16 @@
+dir = getDirectory("Choose the directory with input files");
+list = getFileList(dir);
+dir2 = getDirectory("Directory to save processed images");
+
+setBatchMode(true);
+for (f=0; f<list.length; f++) {
+file = dir+list[f];
+run("Text Image... ", "open=&file");
+saveAs("Tiff", dir2 + list[f] +".tif");
+close();
+};
+setBatchMode(false);
+
+endDialog=Dialog.create("Task completed");
+Dialog.addMessage("Done. End of generateTiffs macro.");
+Dialog.show();

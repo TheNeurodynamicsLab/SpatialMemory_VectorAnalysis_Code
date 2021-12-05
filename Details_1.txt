@@ -1,0 +1,22 @@
+Instructions to obtain the velocity component along occupancy centre in ascii format:
+
+Option 1# Using Origin2021b (as presented in the manuscript). We used Origin scripting language Labtalk to process multiple files at a time.
+
+1. Folder '02.OccupancyCentre' has notepad 'Results_OC.csv' with the coordinates of the occupancy centre.
+
+2. The occupancy centre coordinates are entered in labtalk code '02.LabtalkCode_calculateComponents.txt'. (marked with comment lines //)
+
+03. Origin file '01.xyCoord_Data.opj' has one book (LongName: PD7_WTM, Shortname:Book9) with four sheets. Each sheet represents an individual mouse. A sheet has two columns, corresponding to X and Y coordinates of the mouse in time.
+
+04. Open command window as follows:
+"Window > Command Window"
+Copy and paste the code '02.LabtalkCode_calculateComponents.txt' to calculate the values.
+
+05. After step 04 is completed, copy and paste the code '03.LabtalkCode_exportascii' to export the velocity component values in ascii format.
+
+06. These ascii files will be used to generate tiff images required for making the convergence heat maps.
+
+
+Option #2: Using excel: We present the template for analysing data from one mouse.
+
+

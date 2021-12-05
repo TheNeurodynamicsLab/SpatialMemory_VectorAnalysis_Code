@@ -1,0 +1,15 @@
+//velvecAPT
+fdlog.openpath(B); // choose directory
+doc -e W{   
+doc -e LW
+{
+string temp$ = wks.name$; // Get worksheet name;
+wo -s; // Remove any existing selection;
+wks.colsel(1,1); // Select column 1 - XCOORD;
+wks.colsel(2,1); // Select column 2 - YCOORD;
+wks.colsel(15,1); // Select column 15 - Xcos;
+wks.colsel(16,1); // Select column 16 - Ycos;
+expASC type:=dat path:=%B%H_%(temp$) select:=1 longname:=0 units:=0 comment:=0;
+wo -s; // Remove our selections
+};
+};

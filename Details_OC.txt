@@ -1,0 +1,23 @@
+Instructions to obtain the occupancy centre coordinates:
+
+1. Open stack of images corresponding to residence time heat map of individual mice of a group, i.e., 'ResTime_Stack_PD7_WTM' stack has 4 slices corresponding to 4 indvidiual mice.
+
+2. Produce a representative image of residence time as follows: 
+'Image > Stacks > Z project'. Select 'Sum Slices' option for the entire size of stack.
+
+3. Apply a Gaussian filter.
+'Process > Filters > Gaussian Blur'. Enter Sigma radius of 6 for a 240x240 resolution image. Save file ('ResTime_SUMZProj_PD7_WTM').
+
+4. Threshold region using maximum entropy segmentation. 
+'Image > Adjust > Threshold'. Select 'MaxEntropy' method. Select checkbox Dark background. 
+
+5. Create an ROI on thresholded area.
+'Edit > Selection > Create selection'. Click 'Add[t]'.
+
+
+6. Add to ROI manager and make measurement to obtain centre of mass of the ROI.
+'Analyze > Tools > ROI manager'.
+'Analyze > Set measurements'. Select checkbox 'Centre of mass'.
+Click 'Measure' button in ROI manager menu.
+
+7. The results table contains Xm and Ym which are the coordinates for the occupancy centre. Save results table ('Results_OC').

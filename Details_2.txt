@@ -1,0 +1,33 @@
+Instructions to obtain the xImg and yImg tiff files using the ASCII files exported from Origin in Details_1.txt:
+
+The following steps are be carried out in the stand-alone, custom Java GUI 'XYItoImageSoftware'. The resultant files are to processed using ImageJ GUI.
+
+1. Open Java GUI 'XYItoImageSoftware'. [Software available at github: ]
+
+2. Enter video/image dimensions, i.e., xPixels = and yPixels = 240.
+
+3. Select the file format 'Two component ASCII - xPixel \t yPixel \t xpixIntensity \t ypixIntensity \n'.
+
+4. Select values to be sampled 'All values'.
+
+5. Click 'Browse' button. Select all the ascii files (i.e., folder '01.exportedASCII') and click 'Open' button to convert the ascii files into images. Wait till dialog box informs the task is completed.
+
+6. The folder (i.e. '01.exportedASCII') will now contain new files with the prefix "xImg_" and "yImg_". These are the x and y image files in the form of TextReader files. Copy these files into a new folder (e.g. '02.xyi'). 
+
+7. Open ImageJ GUI. Open 'generateTiffsFromTextSeqReader' in the folder '00.SoftwareAndCode_2' as follows:
+"File > Open > 'generateTiffsFromTextSeqReader'"
+
+8. In the macro window, run macro.
+"Macros > Run Macro"
+
+9. Choose '02.xyi' folder as input. Click select.
+
+10. Choose '03. images' folder as output. Click select.
+
+11. Wait till dialog box informs the task is completed. The tiff files are now in the folder '03.images'
+
+12. Select all tiff with prefix "xImg_". Open in ImageJ. Convert the images into a stack as follows:
+"Image > Stacks > Images to Stack".
+Similarly, Select all tiff with prefix "yImg_" and make a stack.
+
+13. At this point, there are two stacks - an xImg stack and a yImg stack, with 4 slices each (corresponding to individual mice). Save both stacks in step 12. They are the input files for generating the convergence heat maps as explained in 'details_3.txt'.
