@@ -1,0 +1,14 @@
+Instructions to obtain ResTime heat maps: See folder "01.ResTime"
+
+1. Start with ascii files containing X and Y coordinate in a time stamped order. The information is stored without headers and using tab delimited format.
+
+2. Each ascii file corresponds to a single animal's performance.
+
+3. Use the following GUI to convert ascii to residence time heat maps.
+Link:https://github.com/TheNeurodynamicsLab/WaterMaze.git
+
+4. Enter video frame xy dimensions.
+
+5. Click "File > Generate HM from XYData ASII"
+
+6. The heat maps appear as output in the same folder as the input ascii files (e.g., Map_of_I-1 and so on)

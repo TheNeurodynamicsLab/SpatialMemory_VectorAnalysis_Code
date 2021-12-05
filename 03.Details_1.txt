@@ -1,4 +1,4 @@
-Instructions to obtain the velocity component along occupancy centre in ascii format:
+Instructions to obtain the velocity component along occupancy centre in ascii format: See folder "03.OriginTemplates"
 
 Option 1# Using Origin2021b (as presented in the manuscript). We used Origin scripting language Labtalk to process multiple files at a time.
 
@@ -17,6 +17,6 @@ Copy and paste the code '02.LabtalkCode_calculateComponents.txt' to calculate th
 06. These ascii files will be used to generate tiff images required for making the convergence heat maps.
 
 
-Option #2: Using excel: We present the template for analysing data from one mouse.
+Option #2: Using excel: We present the template for analysing data from one animal.
 
 

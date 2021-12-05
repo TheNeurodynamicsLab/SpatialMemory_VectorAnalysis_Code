@@ -1,0 +1,77 @@
+Instructions to generate the convergence peaks heat map given xImg,yImg and ResTime stack for a group of mice: See folder "05.ImageJAnalysis"
+
+Example input files are prvodied in the folder '01.inputFiles'.
+xImg and yImg <- From step 12 in 'Details_2.txt'
+ResTime <- From 'Details_RTHM.txt'
+
+Example output files at each step are provdied in the folder '02.outputFiles'.
+
+The following steps are to be carried out in ImageJ GUI.
+
+1. First, divide xImg and yImg stacks by ResTime stack each. Ensure that the slice order is the same in xImg/yImg and ResTime stacks when carrying out this step.
+"Process > Image Calculator". Process all slices.
+Output file - 01a and 01b.
+
+2. Next, convert the stacks to 8-bit, i.e, files 01a and 01b stacks are converted to 8-bit.
+"Image > Type > 8-bit"
+Output file - 02a and 02b.
+
+3. Make an ROI of all pixels sampled by the group of animals as follows -
+i) ResTime stack has 4 slices. The stack is in 32-bit format/image type.
+ii) Click "Image > Stack > Z-Project". Select "Sum Slices". This provides a single image/slice where each pixel is summed over the 4 slices of the stack. This image/slice is called a sum slice. The sum slice is also in 32-bit format/image type.
+iii) Click "Image > Type > 8-bit". This converts the sum slice image into 8-bit format/image type. We convert it to 8-bit image so that the values are scaled between the range of 0-255.
+iv) Click  "Image > Adjust > Threshold". We want to select all pixels with a value above 0. Use the scroll bar to set the threshold range from exclusive 0 to inclusive 255. 
+v) Click "Edit > Selection > Create Selection". The ROI is created and visible on the sum slice image. This is saved as output file - 03b.
+vi) Click "Analyze > Tools > ROI Manager" to open ROI manager window. Click "Add [t]" to add the ROI visible in sum slice image.
+
+"Image > Stack > Z-Project". "Sum Slices".
+"Image > Type > 8-bit"
+"Image > Adjust > Threshold" 
+Output file - 03a.
+
+
+4. Utilise files 02a and 02b stacks to Z project and obtain sum slice.
+"Image > Stack > Z-Project". "Sum Slices".
+Output file - 04a and 04b.
+
+5. Utilise files 04a and 04b to perform surface fit. Surface fit of order 5 was done using ROI 03b.
+"Plugin > Polynomial surface fit". "X order = 5, Y order = 5".
+Output files - 05a and 05b.
+
+6. Utilise files 05a and 05b to obtain the differential image using 'Differentials_JB' plugin. The Differentials_JB.java plugin is stored in folder "00.SoftwareAndCode_3". 
+Please note -
+05a is differentiated with respect to X.
+05b is differentiated with respect to Y.
+"Plugin > Differentials_JB". "With X" or "With Y".
+Output file - 06a and 06b:
+
+7. Select out pixels sampled by the animals using the ROI obtained in previous steps as follows:
+i) The two images obtained in step 6, namely 06a and 06b are surface images of the partial derivatives wrt X and Y respectively.
+ii) We modify this surface image to show values only at the pixels the mouse has sampled the space. To do this, we use the ROI generated in step 3.
+iii) Place the ROI in the surface image (06a or 06b). Ensure that the ROI position is correct.
+iv) Click "Edit > Clear Outside" to clear the values outside of the ROI.
+- In the code, I set the value of everything outside the ROI to 0. To do the equivalent in using ImageJ GUI is not as straightforward. I do not know a simple way to do it.
+- One way that comes to my mind is convert everything outside the ROI as an 'NaN' and then use a macro code to replace every 'NaN' value with '0'.
+- You can access macro by clicking "Plugins > New > Macro" to write a new macro or run a macro file by clicking "Plugins > Macro > Run". I have attached a macro script that converts NaNs to zeros with the email.
+
+Output file - 07a and 07b.
+
+8. Calculate the divergence of the image as follows:
+Add 07a and 07b to get divergence image.
+"Process > Image Calculator." Use "add" operation.
+Output file - 08a.
+
+9. Obtain the divergence surface through polynomial surface fit.
+Surface fit 08a with order 4.
+"Plugin > Polynomial surface fit". "X order = 4, Y order = 4".
+Output file - 08b.
+
+10. Segregate the divergence (negative) and convergence (positive) values.
+Threshold and select values from -infinity to 0 to get negative divergence image and invert image for representation purpose. 
+"Image > Adjust > Threshold". Click apply to set unselected pixels as NaNs. (This step selected out all negative divergence values in the image.)
+"Process > Math > Multiply". Enter value "-1". (This step inverts the image values for representation purpose.)
+Output file - 09.
+
+11. Reconstruct the heat maps obtained in 08b and 09 into their original size.
+Divergence images, e.g. 08b and 09, are placed into the original dimensions of 240 by 240 using information of bounding rectangle from ROI 03b.
+Output file - 10.

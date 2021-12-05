@@ -1,10 +1,10 @@
-Instructions to obtain the xImg and yImg tiff files using the ASCII files exported from Origin in Details_1.txt:
+Instructions to obtain the xImg and yImg tiff files using the ASCII files exported from Origin in Details_1.txt: See folder "04.XYIfilesToImage"
 
 The following steps are be carried out in the stand-alone, custom Java GUI 'XYItoImageSoftware'. The resultant files are to processed using ImageJ GUI.
 
-1. Open Java GUI 'XYItoImageSoftware'. [Software available at github: ]
+1. Open Java GUI 'XYItoImageSoftware'. [Software available at github: https://github.com/meenakshipk/waterMazeAnalysis_XYItoImageSoftware]
 
-2. Enter video/image dimensions, i.e., xPixels = and yPixels = 240.
+2. Enter video/image dimensions, i.e., xPixels = 240 and yPixels = 240.
 
 3. Select the file format 'Two component ASCII - xPixel \t yPixel \t xpixIntensity \t ypixIntensity \n'.
 

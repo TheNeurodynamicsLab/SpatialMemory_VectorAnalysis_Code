@@ -1,4 +1,4 @@
-Instructions to obtain the occupancy centre coordinates:
+Instructions to obtain the occupancy centre coordinates: See folder "02.OccupancyCentre"
 
 1. Open stack of images corresponding to residence time heat map of individual mice of a group, i.e., 'ResTime_Stack_PD7_WTM' stack has 4 slices corresponding to 4 indvidiual mice.
 
