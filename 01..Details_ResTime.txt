@@ -5,7 +5,8 @@ Instructions to obtain ResTime heat maps: See folder "01.ResTime"
 2. Each ascii file corresponds to a single animal's performance.
 
 3. Use the following GUI to convert ascii to residence time heat maps.
-Link:https://github.com/TheNeurodynamicsLab/WaterMaze ( The netbeans project is available as is in this. The user need to download and compile the project as the .class files and in general exe files are restricted in git). 
+Link:https://github.com/TheNeurodynamicsLab/WaterMaze 
+( The netbeans project is available as is in this. The user need to download and compile the project as the .class files and in general exe files are restricted in git). 
 
 4. Enter video frame xy dimensions.
 
